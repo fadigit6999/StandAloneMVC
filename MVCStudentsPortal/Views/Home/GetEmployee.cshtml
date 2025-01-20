@@ -1,0 +1,93 @@
+﻿@model List<MVCStudentsPortal.Model.Employees>
+
+
+@section head{
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Html.Action("Style", "Home",new { view = "Default" })
+}
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Employees", "GetEmployee", "Home")</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container body-content">
+    <div class="jumbotron">
+        <h1 class="text-center">Employee List</h1>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-6">
+            <a href="/home/CreateEmployee" class="btn btn-default">Create Employee</a>
+        </div>
+  
+    </div>
+
+    <div class="panel panel-default" style="margin-top:10px">
+
+
+        <!-- Table -->
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Salary</th>
+                    <th>Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var iteration in Model)
+                {
+                    <tr>
+                        <td>@iteration.Id</td>
+                        <td>@iteration.Name</td>
+                        <td>@iteration.Phone</td>
+                        <td>@iteration.Salary</td>
+                        <td>@iteration.Address</td>
+
+                        <td>
+                            <a href="/home/UpdateEmployee/@iteration.Id" class="btn btn-primary">Edit</a>
+                            <a href="/home/DeleteEmployee/@iteration.Id" class="btn btn-warning">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
+
+
+
+
+@section scripts
+{
+    @Html.Action("Script", "Home", new { view = "Default" })
+} 

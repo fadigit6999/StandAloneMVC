@@ -1,0 +1,99 @@
+﻿@model MVCStudentsPortal.Model.Employees
+
+@section head{
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @*@Html.Action("Style", "Home",new { view = "Default" })*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+}
+
+
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                <li>@Html.ActionLink("Employees", "GetEmployee", "Home")</li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<div class="container body-content">
+    <div class="jumbotron">
+        <h1 class="text-center">Create Employee</h1>
+    </div>
+    @*form for employee creativity*@
+    @using (Html.BeginForm("DeleteEmployee", "Home", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Name, new { @class = "form-control", placeholder = "Enter Name", required = "required", @readonly = "true" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Phone, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Phone, new { @class = "form-control", placeholder = "Enter Phone", required = "required", @readonly = "true" })
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Address, new { @class = "form-control", placeholder = "Enter Address", @readonly = "true" })
+           
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Salary, new { @class = "col-sm-2 control-label" })
+            <div class="col-sm-10">
+                @Html.TextBoxFor(model => model.Salary, new { @class = "form-control", placeholder = "Enter Salary", @readonly = "true" })
+             
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <a href="/home/GetEmployee" class="btn btn-default">Cancel</a>
+            </div>
+        </div>
+    }
+</div>
+<hr />
+<footer>
+    <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+</footer>
+</div>
+
+
+
+
+@section scripts
+{
+    @*@Html.Action("Script", "Home", new { view = "Default" })*@
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+} 

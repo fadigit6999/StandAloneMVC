@@ -1,0 +1,18 @@
+﻿@model string
+
+@switch (Model)
+{
+    case "Default":
+        @* Script *@
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.15.10/dist/sweetalert2.all.min.js"></script>
+        <script src="~/Scripts/Pages/Home/getemployee.js"></script>
+        break;
+
+
+
+    case "Detail":
+        @* Script *@
+        <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        break;
+}
